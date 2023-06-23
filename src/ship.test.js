@@ -18,4 +18,14 @@ describe('test hits functions', () => {
 
     expect(ship.getHits()).toBe(1)
   })
+
+  test('isSunk returns false if not sunk', () => {
+    expect(ship.isSunk()).toBeFalsy()
+  })
+
+  test('isSunk returns true if sunk', () => {
+    ship.hit()
+    ship.hit()
+    expect(ship.isSunk()).toBeTruthy()
+  })
 })

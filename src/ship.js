@@ -15,4 +15,8 @@ module.exports = class Ship {
   getHits() {
     return this.hits
   }
+
+  isSunk() {
+    return (this.hits >= this.length) ? true : false
+  }
 }
