@@ -31,11 +31,17 @@ describe('Test Gameboard actions', () => {
 
     expect(gameboard.receiveAttack(x, y)).toBeTruthy()
   })
-
-  test('Returns false if misses ships', () => {
-    const ship = gameboard.getPosition(x-1, y)
-
-    expect(gameboard.receiveAttack(x-1, y)).toBeFalsy()
+  
+  describe('test missed attacks', () => {
+    test('Returns false if misses ships', () => {
+      expect(gameboard.receiveAttack(x-1, y)).toBeFalsy()
+    })
+  
+    test('gameboard tracks missed attacks', () => {
+      gameboard.receiveAttack(x-2, y)
+      expect(gameboard.getPosition(x-2, y)).toBe('miss')
+    })
   })
+  
 })
 
