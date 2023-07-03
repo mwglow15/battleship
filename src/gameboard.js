@@ -3,6 +3,7 @@ const Ship = require('./ship')
 module.exports = class Gameboard {
   constructor() {
     this.board = this.createBoard()
+    this.ships = []
   }
 
   createBoard() {
@@ -32,6 +33,8 @@ module.exports = class Gameboard {
         this.board[y][x+i] = ship
       }
     }
+
+    this.ships.push(ship)
   }
 
   getPosition(x, y) {
@@ -53,5 +56,17 @@ module.exports = class Gameboard {
       this.board[y][x] = 'miss'
       return false
     }
+  }
+
+  allSunk() {
+    const allSunk = this.ships.every(ship => {
+      return ship.isSunk()
+    })
+
+    return allSunk
+  }
+
+  getShips() {
+    return this.ships
   }
 }

@@ -42,6 +42,25 @@ describe('Test Gameboard actions', () => {
       expect(gameboard.getPosition(x-2, y)).toBe('miss')
     })
   })
-  
+})
+
+describe('Are all ships sunk?', () => {
+  const gameboard = new Gameboard()
+  gameboard.placeShip(2, 2, 2, 'horizontal')
+  gameboard.placeShip(2, 3, 3, 'vertical')
+
+  test('not sunk yet', () => {
+    expect(gameboard.allSunk()).toBeFalsy()
+  })
+
+  test('all sunk', () => {
+    gameboard.receiveAttack(2,2)
+    gameboard.receiveAttack(3,2)
+    gameboard.receiveAttack(3,3)
+    gameboard.receiveAttack(3,4)
+
+    expect(gameboard.allSunk()).toBeTruthy()
+  })
+
 })
 
